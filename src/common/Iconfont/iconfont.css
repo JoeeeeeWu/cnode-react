@@ -1,0 +1,46 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot'); /* IE9*/
+  src: url('iconfont.eot') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-user:before { content: "\f0003"; }
+
+.icon-share:before { content: "\e6b0"; }
+
+.icon-tuichu:before { content: "\e6cb"; }
+
+.icon-home:before { content: "\e608"; }
+
+.icon-back:before { content: "\e63d"; }
+
+.icon-good:before { content: "\e60d"; }
+
+.icon-job:before { content: "\e62d"; }
+
+.icon-dianzan:before { content: "\e62e"; }
+
+.icon-top:before { content: "\e879"; }
+
+.icon-top:before { content: "\e645"; }
+
+.icon-msg:before { content: "\e66d"; }
+
+.icon-reply:before { content: "\e6b5"; }
+
+.icon-ask:before { content: "\e60f"; }
+
+.icon-publish:before { content: "\e670"; }
+
+.icon-gotop:before { content: "\e612"; }
+
