@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link,browserHistory} from 'react-router';
+import {Link,hashHistory} from 'react-router';
 import * as tools from '../common/tools';
 import commentStyle from './comment.less';
 import CommentForm from './CommentForm';
@@ -46,7 +46,7 @@ class Comment extends Component {
                 }
             })
         }else{
-            browserHistory.push('/cnode-react/login');
+            hashHistory.push('/cnode-react/login');
         }
     }
     

@@ -1,7 +1,6 @@
-.app__footer-3u-rD {
+.footer__footer-2qUZK {
   width: 100%;
   height: 0.5rem;
-  line-height: 0.5rem;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -10,24 +9,30 @@
   text-align: center;
   font-size: 0.16rem;
 }
-.app__footer-3u-rD a {
+.footer__footer-2qUZK a {
   color: #fff;
-  padding: 0.14rem 0.15rem;
 }
-.app__footer-3u-rD ul {
+.footer__footer-2qUZK ul {
   display: flex;
 }
-.app__footer-3u-rD li {
-  flex: auto;
+.footer__footer-2qUZK li {
+  flex: 1 1 auto;
 }
-.app__active-3KeRJ {
-  background-color: #666;
+.footer__footer-2qUZK li i,
+.footer__footer-2qUZK li span {
+  display: block;
+}
+.footer__footer-2qUZK li i {
+  font-size: 0.2rem;
+}
+.footer__active-1lGtS {
+  background-color: #636363;
 }
 .home__nav-1SCNo {
   width: 100%;
   height: 0.4rem;
   line-height: 0.4rem;
-  font-size: 0.14rem;
+  font-size: 0.16rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -55,16 +60,24 @@
   background-color: #999;
   border-radius: 0.1rem;
 }
+.home__more-7JfyO {
+  text-align: center;
+  line-height: 0.5rem;
+}
 .item__item-2C9cr {
   padding: 0.1rem;
   border-bottom: solid 1px #ddd;
 }
 .item__title-2NR3q {
-  font-size: 0.14rem;
+  font-size: 0.16rem;
   line-height: 2.2;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.item__title-2NR3q i {
+  vertical-align: middle;
+  margin-right: 0.05rem;
 }
 .item__avatar-1iOJ9 {
   width: 0.4rem;
@@ -90,6 +103,14 @@
 .item__msgRight-bRSY3 {
   flex: 0 0 auto;
   text-align: right;
+}
+.goTop__goTop-2pzMs {
+  position: fixed;
+  right: 0.2rem;
+  bottom: 0.7rem;
+}
+.goTop__goTopIcon-1vHFd {
+  font-size: 0.5rem;
 }
 .header__header-P1JXb {
   height: 0.4rem;
@@ -126,13 +147,38 @@
 .comment__msg-3i9_Z span {
   display: block;
 }
+.comment__relyFormContainer-3aBnv {
+  margin-top: 0.1rem;
+}
 .comment__oper-1CdK2 {
-  float: right;
+  text-align: right;
 }
 .comment__dianzan-ta3Al {
   margin-right: 0.2rem;
 }
-.topic__topic-IUSGc {
+.comment__active-324-W {
+  color: blue;
+}
+.comment__reply-83cNn {
+  vertical-align: middle;
+}
+.commentForm__form-11-wT {
+  overflow: hidden;
+}
+.commentForm__text-xu42t {
+  width: 100%;
+  resize: none;
+  border-radius: 0.05rem;
+  box-sizing: border-box;
+}
+.commentForm__button-LrKDd {
+  display: block;
+  width: 100%;
+  border-radius: 0.05rem;
+  margin-top: 0.2rem;
+  padding: 0.1rem 0.2rem;
+}
+.topic__topicContainer-3dImr {
   margin-top: 0.4rem;
   padding: 0.1rem;
 }
@@ -167,20 +213,61 @@
   background-color: #ddd;
   padding-left: 0.2rem;
 }
+.topic__bottom-1IIZ5 {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
 .LoginWarn__warn-3cBJX {
   text-align: center;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+.postForm__tab-35x5-,
+.postForm__title-3GENR,
+.postForm__content-2VfPN,
+.postForm__submit-1GnS1 {
+  display: block;
+  width: 100%;
+  border-radius: 0.05rem;
+}
+.postForm__title-3GENR,
+.postForm__content-2VfPN,
+.postForm__submit-1GnS1 {
+  margin-top: 0.15rem;
+}
+.postForm__submit-1GnS1 {
+  padding: 0.1rem;
+}
 .post__content-11gVq {
   margin-top: 0.4rem;
   margin-bottom: 0.5rem;
+  padding: 0.1rem;
 }
 .post__headerContainer-34kUt {
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
+}
+.msgDetail__menu-3i7yo {
+  display: flex;
+  text-align: center;
+  line-height: 0.4rem;
+  font-size: 0.14rem;
+  background-color: #999;
+}
+.msgDetail__menu-3i7yo li {
+  flex: 1 1 auto;
+}
+.msgDetail__menu-3i7yo li.msgDetail__active-3stlJ {
+  border-bottom: solid 2px #333;
+}
+.msgDetail__msgItem-QA0SU {
+  padding: 0.1rem;
+  border-bottom: solid 1px #ddd;
+}
+.msgDetail__time-1kRMF {
+  text-align: right;
 }
 .msg__content-1Ro5Z {
   margin-top: 0.4rem;
@@ -706,9 +793,16 @@ h4,
 h5 {
   padding: 0;
   margin: 0;
+  font-family: 'microsoft yahei', sans-serif;
+}
+h3 {
+  font-size: 0.16rem;
+}
+h2 {
+  font-size: 0.18rem;
 }
 body {
-  font-size: 0.12rem;
+  font-size: 0.14rem;
 }
 li {
   list-style: none;
@@ -737,9 +831,12 @@ pre {
   visibility: hidden;
   clear: both;
 }
-input {
+input,
+textarea {
   border-style: none;
   border: solid 1px #999;
+  resize: none;
+  box-sizing: border-box;
 }
 button {
   border-style: none;

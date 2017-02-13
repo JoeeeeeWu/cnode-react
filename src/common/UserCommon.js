@@ -28,7 +28,6 @@ class UserCommon extends Component {
 
     handleClickReplay(){
         const {recent_replies} = this.props.userData;
-        console.log(recent_replies);
         this.setState({
             topicClass : null,
             replayClass: 'active',
@@ -71,7 +70,7 @@ class UserCommon extends Component {
                         const {title,last_reply_at,id} = data;
                         return (
                             <li key={last_reply_at} className={userCommonStyle.item}>
-                                <Link to={`/cnode-react/topic/${id}`}>
+                                <Link to={`/topic/${id}`}>
                                     <p className={userCommonStyle.title}>
                                         {title}
                                     </p>

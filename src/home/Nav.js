@@ -17,11 +17,11 @@ class Nav extends Component {
         return (
             <nav className={homeStyle.nav}>
                 <ul>
-                    <li className={setCur.all}><IndexLink to={{ pathname: "/cnode-react/", query: {tab: "all"}}}>全部</IndexLink></li>
-                    <li className={setCur.good}><Link to={{ pathname: "/cnode-react/", query: {tab: "good"}}}>精华</Link></li>
-                    <li className={setCur.share}><Link to={{ pathname: "/cnode-react/", query: {tab: "share"}}}>分享</Link></li>
-                    <li className={setCur.ask}><Link to={{ pathname: "/cnode-react/", query: {tab: "ask"}}}>问答</Link></li>
-                    <li className={setCur.job}><Link to={{ pathname: "/cnode-react/", query: {tab: "job"}}}>招聘</Link></li>
+                    <li className={setCur.all}><IndexLink to={{ pathname: "/", query: {tab: "all"}}}>全部</IndexLink></li>
+                    <li className={setCur.good}><Link to={{ pathname: "/", query: {tab: "good"}}}>精华</Link></li>
+                    <li className={setCur.share}><Link to={{ pathname: "/", query: {tab: "share"}}}>分享</Link></li>
+                    <li className={setCur.ask}><Link to={{ pathname: "/", query: {tab: "ask"}}}>问答</Link></li>
+                    <li className={setCur.job}><Link to={{ pathname: "/", query: {tab: "job"}}}>招聘</Link></li>
                 </ul>
             </nav>
         );

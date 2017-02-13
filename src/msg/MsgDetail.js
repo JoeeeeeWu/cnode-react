@@ -60,7 +60,7 @@ class MsgDetail extends Component {
                 {this.state.listData.map(function(item,index){
                     const {type,author : {loginname},topic : {id,title},reply : {content,create_at}} = item;
                     return (<li key={index} className={MsgDetailStyle.msgItem}>
-                                <Link to={`/cnode-react/topic/${id}`}>
+                                <Link to={`/topic/${id}`}>
                                     <p>{loginname}在话题{title}中{type=='at' ? '@' : '回复'}了你</p>
                                     <p className={MsgDetailStyle.time}>{tools.formatTime(create_at)}</p>
                                 </Link>

@@ -9,7 +9,7 @@ class Item extends Component {
         let {id,title,reply_count,visit_count,last_reply_at,create_at,author,tab}=this.props.data;
         return (
             <li className={itemStyle.item}>
-                <Link to={`/cnode-react/topic/${id}`}>
+                <Link to={`/topic/${id}`}>
                     <h3 className={itemStyle.title}> 
                         <i className={`iconfont icon-${tab}`}></i> 
                         {title}

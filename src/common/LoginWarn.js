@@ -6,7 +6,7 @@ class LoginWarn extends Component {
     render() {
         return (
             <p className={loginWarnStyle.warn}>
-                您还没登录，<Link to='/cnode-react/login'>点击登录</Link>！
+                您还没登录，<Link to='/login'>点击登录</Link>！
             </p>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 import PostFormStyle from './postForm.less';
 import axios from 'axios';
 const url='https://cnodejs.org/api/v1/';
@@ -34,7 +34,7 @@ class PostForm extends Component {
         }).then(res=>{
             const topicId=res.data.topic_id;
             console.log(res.data);
-            browserHistory.push(`/cnode-react/topic/${topicId}`)
+            hashHistory.push(`/cnode-react/topic/${topicId}`)
         }).catch(error=>{
             alert('发表主题失败！');
             console.log(error);

@@ -19,7 +19,7 @@ class Post extends Component {
                         <PostForm/>
                     }
                 </div>
-                <Footer/>
+                <Footer index='1'/>
             </div>
         );
     }

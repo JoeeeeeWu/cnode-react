@@ -19,7 +19,7 @@ class Msg extends Component {
                         <MsgDetail/>
                     }
                 </div>
-                <Footer/>
+                <Footer index='2'/>
             </div>
         );
     }

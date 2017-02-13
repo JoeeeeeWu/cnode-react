@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {browserHistory,Link} from 'react-router';
+import {hashHistory,Link} from 'react-router';
 import * as actions from './topicActionCreator';
 import Header from '../common/Header';
 import CommentList from './CommentList';
@@ -26,7 +26,7 @@ class Topic extends Component {
         const {title,tab,author,create_at,visit_count,reply_count,content,replies} = topicData;
         const {loginname,avatar_url} = author;
         const left = (<i className='iconfont icon-back'></i>);
-        const onClick = browserHistory.goBack;
+        const onClick = hashHistory.goBack;
         const accesstoken = localStorage.getItem('accesstoken');
         return (
             <div>
@@ -41,7 +41,7 @@ class Topic extends Component {
                         </h3>
                         <div className={topicStyle.msg}>
                             <div className={topicStyle.pic}>
-                                <Link to={`/cnode-react/user/${loginname}`}><img src={avatar_url} className={topicStyle.avatar}/></Link>
+                                <Link to={`/user/${loginname}`}><img src={avatar_url} className={topicStyle.avatar}/></Link>
                             </div>
                             <div className={topicStyle.msgDetail}>
                                 <div>

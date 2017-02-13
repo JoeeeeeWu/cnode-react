@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Header from '../common/Header';
 import loginStyle from './login.less';
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 import * as actions from '../common/commonActionCreator';
 
 class Login extends Component {
@@ -19,8 +19,8 @@ class Login extends Component {
     }
 
     render() {
-        const left = (<i className='iconfont icon-fanhui'></i>);
-        const onClick = browserHistory.goBack;
+        const left = (<i className='iconfont icon-back'></i>);
+        const onClick = hashHistory.goBack;
         return (
             <div className={loginStyle.login}>
                 <div className={loginStyle.headerContainer}>

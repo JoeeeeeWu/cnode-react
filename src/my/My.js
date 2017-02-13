@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 import LoginWarn from '../common/LoginWarn';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
@@ -11,7 +11,7 @@ class My extends Component {
         var r=confirm("确定退出登录？");
         if(r===true){
             localStorage.clear();
-            browserHistory.push('/cnode-react/my');
+            hashHistory.push('/my');
         }
     }
 
@@ -30,7 +30,7 @@ class My extends Component {
                         <UserCommon loginname={loginname}/>
                     }
                 </div>
-                <Footer/>
+                <Footer index='3'/>
             </div>
         );
     }

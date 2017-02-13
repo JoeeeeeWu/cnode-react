@@ -18,7 +18,7 @@ class Home extends Component {
                     </p>
                 </div>
                 <GoTop/>
-                <Footer/>
+                <Footer index='0'/>
             </div>
         );
     }
