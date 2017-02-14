@@ -6,3 +6,27 @@
 .goTopIcon{
     font-size: 0.5rem;
 }
+
+:global(.topAnima-enter){
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+:global(.topAnima-enter):global(.topAnima-enter-active) {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms ease-in,transform 300ms ease-in;
+}
+
+:global(.topAnima-leave) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+:global(.topAnima-leave):global(.topAnima-leave-active) {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms ease-in,transform 700ms ease-in;
+}
+
+

@@ -1,47 +1,35 @@
-import axios from 'axios';
-
-const url='https://cnodejs.org/api/v1/';
-
-function getTopicList (listData) {
+export function getTopicList (listData) {
     return {
         type : 'TOPICS',
-        listData : listData
+        listData
     }
 }
 
-function getNextTopicList (listData) {
+export function getNextTopicList (listData) {
     return {
         type : 'NEXT_PAGE_TOPICS',
-        listData : listData
+        listData
     }
 }
 
-function getTopicListData (cb,tab='all',page=1) {
-    axios.get(url+'topics',{
-        params: {
-            limit: 10,
-            tab: tab,
-            page: page
-        }
-    }).then(res => {
-        cb(res.data.data);
-    }).catch(error => {
-        console.log(error)
-    })
-}
-
-export function fetchTopics(tab){
-    return dispatch => {
-        getTopicListData(listData => {
-            dispatch(getTopicList(listData))
-        },tab)
+export function getScrollTop(scrollTop){
+    return {
+        type : 'MARK_SCROLL',
+        scrollTop
     }
 }
 
-export function fetchNextTopics(tab,page){
-    return dispatch => {
-        getTopicListData(listData => {
-            dispatch(getNextTopicList(listData))
-        },tab,page)
+export function getTab(tab){
+    return {
+        type : 'MARK_TAB',
+        tab
     }
 }
+
+export function getPage(page){
+    return {
+        type : 'MARK_PAGE',
+        page
+    }
+}
+

@@ -60,10 +60,6 @@
   background-color: #999;
   border-radius: 0.1rem;
 }
-.home__more-7JfyO {
-  text-align: center;
-  line-height: 0.5rem;
-}
 .item__item-2C9cr {
   padding: 0.1rem;
   border-bottom: solid 1px #ddd;
@@ -104,6 +100,10 @@
   flex: 0 0 auto;
   text-align: right;
 }
+.lodeMsg__more-1dUUh {
+  text-align: center;
+  line-height: 0.5rem;
+}
 .goTop__goTop-2pzMs {
   position: fixed;
   right: 0.2rem;
@@ -111,6 +111,24 @@
 }
 .goTop__goTopIcon-1vHFd {
   font-size: 0.5rem;
+}
+.topAnima-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.topAnima-enter.topAnima-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms ease-in, transform 300ms ease-in;
+}
+.topAnima-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+.topAnima-leave.topAnima-leave-active {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms ease-in, transform 700ms ease-in;
 }
 .header__header-P1JXb {
   height: 0.4rem;
@@ -238,10 +256,12 @@
 .postForm__submit-1GnS1 {
   padding: 0.1rem;
 }
+form {
+  padding: 0.1rem;
+}
 .post__content-11gVq {
   margin-top: 0.4rem;
   margin-bottom: 0.5rem;
-  padding: 0.1rem;
 }
 .post__headerContainer-34kUt {
   width: 100%;

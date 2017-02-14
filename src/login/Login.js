@@ -13,9 +13,13 @@ class Login extends Component {
 
     handleSubmit(e){
         const {login} = this.props;
+        const input = this.input.value.trim();
         e.preventDefault();
-        if(!this.input.value.trim()) return;
-        login(this.input.value.trim())
+        if(!input) {
+            alert('请输入您的Access Token!');
+            return;
+        }
+        login(input)
     }
 
     render() {

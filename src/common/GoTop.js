@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import goTopStyle from './goTop.less';
 
 class GoTop extends Component {
@@ -36,11 +37,13 @@ class GoTop extends Component {
     }
 
     render() {
-        const goTopComp = <i className={`iconfont icon-gotop ${goTopStyle.goTopIcon}`} onClick={this.clickHandler}></i>;
+        const goTopComp = <p><i className={`iconfont icon-gotop ${goTopStyle.goTopIcon}`} onClick={this.clickHandler}></i></p>;
         const showGoTop = this.state.showGoTop;
         return (
             <div className={goTopStyle.goTop}>
-                {showGoTop ? goTopComp : null}
+                <ReactCSSTransitionGroup transitionName="topAnima" transitionEnterTimeout={300} transitionLeaveTimeout={500}>
+                    {showGoTop ? goTopComp : null}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

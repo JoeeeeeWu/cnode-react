@@ -8,18 +8,44 @@ import CommentForm from './CommentForm';
 import LoginWarn from '../common/LoginWarn';
 import * as tools from '../common/tools';
 import GoTop from '../common/GoTop';
+import LodeMsg from '../common/LodeMsg';
+
+import axios from 'axios';
+
+const url='https://cnodejs.org/api/v1/';
 
 import topicStyle from './topic.less';
 
 class Topic extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            show : true,
+            msg : '正在加载中！'
+        };
+    }
     
     componentWillMount() {
         const id = this.props.params.id;
         const {renderTopic} = this.props;
         document.body.scrollTop = 0;
-        renderTopic(id);
+        this.getTopicData (renderTopic,id)
     }
     
+    getTopicData (cb,id) {
+        axios.get(url+'topic/'+id).then(res => {
+            cb(res.data.data);
+            this.setState({
+                show : false
+            });
+        }).catch(error => {
+            console.log(error);
+            this.setState({
+                msg : '加载失败！'
+            })
+        })
+    }
 
     render() {
         const {topicData} = this.props;
@@ -28,47 +54,52 @@ class Topic extends Component {
         const left = (<i className='iconfont icon-back'></i>);
         const onClick = hashHistory.goBack;
         const accesstoken = localStorage.getItem('accesstoken');
-        return (
+        return ( 
             <div>
                 <div className={topicStyle.headerContainer}>
                     <Header title='详情' left={left} leftClick={onClick}/>
                 </div>
-                <div className={topicStyle.topicContainer}>
-                    <div className={topicStyle.topic}>
-                        <h3 className={topicStyle.title}>
-                            <i className={`iconfont icon-${tab}`}></i>
-                            {title}
-                        </h3>
-                        <div className={topicStyle.msg}>
-                            <div className={topicStyle.pic}>
-                                <Link to={`/user/${loginname}`}><img src={avatar_url} className={topicStyle.avatar}/></Link>
-                            </div>
-                            <div className={topicStyle.msgDetail}>
-                                <div>
-                                    <Link to={`/cnode-react/user/${loginname}`}><span>{loginname}</span></Link>
-                                    <span>发表于{tools.formatTime(create_at)}</span>
-                                </div>
-                                <div>
-                                    <span>阅读：{visit_count}</span>
-                                    <span>回复：{reply_count}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={topicStyle.content} dangerouslySetInnerHTML={{__html: content}}/>
-                        <h4 className={topicStyle.reliesNumber}>共{reply_count}条回复：</h4>
-                        <CommentList replies={replies}/>
-                    </div>
-                    <div className={topicStyle.bottom}>
+                    <div className={topicStyle.topicContainer}>
                         {
-                            !accesstoken ? 
-                            <LoginWarn/> :
-                            <CommentForm/> 
+                            this.state.show ? 
+                            <LodeMsg msg={this.state.msg}/> : 
+                            <div className={topicStyle.topic}>
+                                <h3 className={topicStyle.title}>
+                                    <i className={`iconfont icon-${tab}`}></i>
+                                    {title}
+                                </h3>
+                                <div className={topicStyle.msg}>
+                                    <div className={topicStyle.pic}>
+                                        <Link to={`/user/${loginname}`}><img src={avatar_url} className={topicStyle.avatar}/></Link>
+                                    </div>
+                                    <div className={topicStyle.msgDetail}>
+                                        <div>
+                                            <Link to={`/cnode-react/user/${loginname}`}><span>{loginname}</span></Link>
+                                            <span>发表于{tools.formatTime(create_at)}</span>
+                                        </div>
+                                        <div>
+                                            <span>阅读：{visit_count}</span>
+                                            <span>回复：{reply_count}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={topicStyle.content} dangerouslySetInnerHTML={{__html: content}}/>
+                                <h4 className={topicStyle.reliesNumber}>共{reply_count}条回复：</h4>
+                                <CommentList replies={replies}/>
+                                <div className={topicStyle.bottom}>
+                                    {
+                                        !accesstoken ? 
+                                        <LoginWarn/> :
+                                        <CommentForm/> 
+                                    }
+                                </div>
+                            </div>
                         }
                     </div>
-                </div>
                 <GoTop/>
             </div>
-        );
+               
+        )
     }
 }
 
@@ -80,8 +111,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        renderTopic : (id)=>{
-            dispatch(actions.fetchTopic(id))//dispatch的是actionCreator的执行结果
+        renderTopic : (topicData)=>{
+            dispatch(actions.getTopic(topicData))//dispatch的是actionCreator的执行结果
         }
     }
 }

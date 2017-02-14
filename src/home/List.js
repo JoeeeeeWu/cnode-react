@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Item from './Item';
 import * as actions from './homeActionCreator';
-
 import homeStyle from './home.less';
+import LodeMsg from '../common/LodeMsg';
+
+import axios from 'axios';
+
+const url='https://cnodejs.org/api/v1/';
 
 class List extends Component {
 
@@ -12,47 +16,90 @@ class List extends Component {
         this.state = {
             tab : 'all',
             page: 1,
+            msg: ':D'
         };
         this.scrollHandler = this.scrollHandler.bind(this);
     }
 
+    getTopicListData(cb,tab,page=1){
+        this.setState({
+                msg: '正在加载中...'
+        });
+        axios.get(url+'topics',{
+            params: {
+                limit: 10,
+                tab: tab,
+                page: page
+            }
+        }).then(res=> {
+            cb(res.data.data);
+            this.setState({
+                msg: '加载完成！',
+                page : this.state.page +1
+            });
+        }).catch(error => {
+            this.setState({
+                msg: '加载失败！'
+            });
+            console.log(error)
+        })
+    }
+
     componentWillMount(){
-        let {renderList,tab}=this.props;
-        renderList(tab);
+        let {renderList,tab,extab,expage}=this.props;
+        if(!tab && !extab){
+            this.getTopicListData(renderList);
+        }else if(tab && !extab){
+            this.getTopicListData(renderList,tab);
+            this.setState({
+                tab
+            })
+        }else if(!tab && extab){
+            this.setState({
+                page : expage
+            })
+        }else if(tab && extab && tab === extab){
+            this.setState({
+                page : expage
+            })
+        }
     }
 
     componentWillReceiveProps(nextProps){
-        const {renderList,tab,page} = nextProps;
-        if(tab && tab!=this.props.tab){
+        let {renderList,tab} = nextProps;
+        if(tab!=this.props.tab){
+            renderList([]);
             document.body.scrollTop = 0;
-            renderList(tab);
+            this.getTopicListData(renderList,tab);
             this.setState({
-                tab : tab,
-                page : 1
+                page : 1,
+                tab
             });
-            console.log(this.state.page);
         }
     }
 
     scrollHandler(){
         const {renderNextList} = this.props;
-        var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        var scrollTop = document.body.scrollTop;
-        var wholeHeight = document.body.scrollHeight;
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollTop = document.body.scrollTop;
+        const wholeHeight = document.body.scrollHeight;
         if(windowHeight + scrollTop >= wholeHeight){
-            this.setState({
-                page : this.state.page + 1
-            });
-            console.log(this.state.page);
-            renderNextList(this.state.tab,this.state.page);
+            this.getTopicListData(renderNextList,this.props.tab,this.state.page)
         }
     }
 
     componentDidMount(){
+        const {exscrollTop} = this.props;
+        document.body.scrollTop = exscrollTop;
         window.addEventListener('scroll',this.scrollHandler);
     }
 
     componentWillUnmount() {
+        const {markScroll,markTab,markPage} = this.props;
+        markScroll(document.body.scrollTop);
+        markTab(this.state.tab);
+        markPage(this.state.page);
+
         window.removeEventListener('scroll',this.scrollHandler);
     }
     
@@ -60,30 +107,43 @@ class List extends Component {
     render() {
         let {listData}=this.props;
         return (
-            <ul className={homeStyle.topicsList} >
-                {listData.map(function(data,index){
-                    return <Item data={data} key={index}/>
-                })}
-            </ul>
+            <div>
+                <ul className={homeStyle.topicsList} >
+                    {listData.map(function(data,index){
+                        return <Item data={data} key={index}/>
+                    })}
+                </ul>
+                <LodeMsg msg={this.state.msg}/>
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    state.homeState.listData.map(function(data){
-    });
     return {
-        listData : state.homeState.listData
+        listData : state.homeState.listData,
+        exscrollTop : state.homeState.exscrollTop,
+        extab : state.homeState.extab,
+        expage : state.homeState.expage
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        renderList : (tab)=>{
-            dispatch(actions.fetchTopics(tab))
+        renderList : (listData)=>{
+            dispatch(actions.getTopicList(listData))
         },
-        renderNextList : (tab,page)=>{
-            dispatch(actions.fetchNextTopics(tab,page))
+        renderNextList : (listData)=>{
+            dispatch(actions.getNextTopicList(listData))
+        },
+        markScroll : (scrollTop) => {
+            dispatch(actions.getScrollTop(scrollTop))
+        },
+        markTab : (tab) => {
+            dispatch(actions.getTab(tab))
+        },
+        markPage : (page) => {
+            dispatch(actions.getPage(page))
         }
     }
 }

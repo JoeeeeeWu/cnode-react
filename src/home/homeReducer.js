@@ -1,5 +1,8 @@
 const initialState = {
-    listData : []
+    listData : [],
+    exscrollTop : 0,
+    extab : null,
+    expage : 1
 }
 
 const homeState = (state=initialState,action) => {
@@ -11,7 +14,19 @@ const homeState = (state=initialState,action) => {
         case 'NEXT_PAGE_TOPICS':
             return Object.assign({},state,{
                 listData : [...state.listData,...action.listData]
-            })
+            });
+        case 'MARK_SCROLL':
+            return Object.assign({},state,{
+                exscrollTop : action.scrollTop
+            });
+        case 'MARK_TAB':
+            return Object.assign({},state,{
+                extab : action.tab
+            });
+        case 'MARK_PAGE':
+            return Object.assign({},state,{
+                expage : action.page
+            });
         default:
             return state
     }
