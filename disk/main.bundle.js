@@ -29087,7 +29087,6 @@ webpackJsonp([0,1],[
 	            var extab = this.props.extab;
 
 	            var link = extab ? '/?tab=' + extab : '/';
-	            console.log(link);
 	            var arr = [];
 	            arr[index] = 'active';
 	            return _react2.default.createElement(
@@ -29707,7 +29706,6 @@ webpackJsonp([0,1],[
 	    }, {
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
-	            console.log('componentWillMount');
 	            var _props = this.props,
 	                renderList = _props.renderList,
 	                tab = _props.tab,
@@ -29725,7 +29723,6 @@ webpackJsonp([0,1],[
 	                    tab: extab
 	                });
 	            }
-	            console.log(tab);
 	        }
 	    }, {
 	        key: 'componentWillReceiveProps',
@@ -29733,8 +29730,6 @@ webpackJsonp([0,1],[
 	            var tab = nextProps.tab,
 	                renderList = nextProps.renderList;
 
-	            console.log(nextProps);
-	            console.log('componentWillReceiveProps');
 	            if (tab !== this.props.tab) {
 	                renderList([]);
 	                document.body.scrollTop = 0;
@@ -29765,7 +29760,6 @@ webpackJsonp([0,1],[
 	                extab = _props2.extab,
 	                tab = _props2.tab;
 
-	            console.log(this.props);
 	            window.addEventListener('scroll', this.scrollHandler);
 	            if (extab) {
 	                document.body.scrollTop = exscrollTop;
@@ -35102,7 +35096,7 @@ webpackJsonp([0,1],[
 	                    null,
 	                    _react2.default.createElement(
 	                        _reactAddonsCssTransitionGroup2.default,
-	                        { transitionName: 'fade-slide', transitionEnterTimeout: 500, transitionLeaveTimeout: 500, transitionLeave: false },
+	                        { transitionName: 'fade-slide', transitionEnterTimeout: 300, transitionLeaveTimeout: 300 },
 	                        this.state.listData.map(function (item, index) {
 	                            var type = item.type,
 	                                loginname = item.author.loginname,
@@ -35514,7 +35508,7 @@ webpackJsonp([0,1],[
 	                            { className: _userCommon2.default.list },
 	                            _react2.default.createElement(
 	                                _reactAddonsCssTransitionGroup2.default,
-	                                { transitionName: 'fade-slide', transitionEnterTimeout: 300, transitionLeaveTimeout: 300, transitionLeave: false },
+	                                { transitionName: 'fade-slide', transitionEnterTimeout: 300, transitionLeaveTimeout: 300 },
 	                                this.state.listData ? this.state.listData.map(function (data, index) {
 	                                    var title = data.title,
 	                                        last_reply_at = data.last_reply_at,

@@ -48,7 +48,6 @@ class List extends Component {
     }
 
     componentWillMount(){
-        console.log('componentWillMount');
         let {renderList,tab,extab,expage}=this.props;
         if(!extab){
             this.getTopicListData(renderList,tab);
@@ -61,13 +60,10 @@ class List extends Component {
                 tab : extab
             })
         }
-        console.log(tab);
     }
 
     componentWillReceiveProps(nextProps){
         const {tab,renderList}=nextProps;
-        console.log(nextProps);
-        console.log('componentWillReceiveProps');
         if(tab!==this.props.tab){
             renderList([]);
             document.body.scrollTop = 0;
@@ -91,7 +87,6 @@ class List extends Component {
 
     componentDidMount(){
         const {exscrollTop,extab,tab} = this.props;
-        console.log(this.props);
         window.addEventListener('scroll',this.scrollHandler);
         if(extab) {
             document.body.scrollTop = exscrollTop;

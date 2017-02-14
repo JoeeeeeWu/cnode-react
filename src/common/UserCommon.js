@@ -93,7 +93,7 @@ class UserCommon extends Component {
                                 <li className={userCommonStyle[this.state.replayClass]} onClick={this.handleClickReplay}>回复</li>
                             </ul>
                             <ul className={userCommonStyle.list}>
-                                <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={300} transitionLeaveTimeout={300} transitionLeave={false}>
+                                <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
                                     {this.state.listData ? 
                                     this.state.listData.map(function(data,index){
                                         const {title,last_reply_at,id} = data;

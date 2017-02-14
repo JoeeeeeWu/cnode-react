@@ -69,7 +69,7 @@ button{
 
 :global(.fade-slide-enter){
      opacity: 0;
-     transform: translateY(15px);
+     transform: translateY(20px);
 }
 
 :global(.fade-slide-enter):global(.fade-slide-enter-active) {
@@ -85,18 +85,17 @@ button{
 
 :global(.fade-slide-leave):global(.fade-slide-leave-active) {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(20px);
     transition: opacity 500ms ease-out,transform 500ms ease-out;
 }
 
 :global(.fade-slide-appear) {
     opacity: 0;
-    transform: translateY(15px);
 }
 
 :global(.fade-slide-appear):global(.fade-slide-appear-active) {
     opacity: 1;
-    transition: opacity 500ms ease-out,transform 500ms ease-out;
+    transition: opacity 500ms ease-out;
 }
 
 

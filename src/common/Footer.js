@@ -8,7 +8,6 @@ class Footer extends Component {
         const {index} = this.props;
         const {extab} = this.props;
         const link = extab ? `/?tab=${extab}` : '/';
-        console.log(link);
         var arr=[];
         arr[index] = 'active';
         return (

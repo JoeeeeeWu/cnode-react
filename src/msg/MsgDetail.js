@@ -59,7 +59,7 @@ class MsgDetail extends Component {
                     <li className={MsgDetailStyle[this.state.hasClass]} onClick={this.handleClickHas}>已读消息</li>
                 </ul>
                 <ul>
-                    <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={false}>
+                    <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
                         {this.state.listData.map(function(item,index){
                             const {type,author : {loginname},topic : {id,title},reply : {content,create_at}} = item;
                             return (<li key={index} className={MsgDetailStyle.msgItem}>

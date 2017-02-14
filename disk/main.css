@@ -882,7 +882,7 @@ button {
 }
 .fade-slide-enter {
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(20px);
 }
 .fade-slide-enter.fade-slide-enter-active {
   opacity: 1;
@@ -895,16 +895,15 @@ button {
 }
 .fade-slide-leave.fade-slide-leave-active {
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(20px);
   transition: opacity 500ms ease-out, transform 500ms ease-out;
 }
 .fade-slide-appear {
   opacity: 0;
-  transform: translateY(15px);
 }
 .fade-slide-appear.fade-slide-appear-active {
   opacity: 1;
-  transition: opacity 500ms ease-out, transform 500ms ease-out;
+  transition: opacity 500ms ease-out;
 }
 .down-enter {
   transform: translateY(-5px);
