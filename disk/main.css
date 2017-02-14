@@ -42,6 +42,7 @@
   color: #fff;
   background-color: #383b45;
   text-align: center;
+  z-index: 99;
 }
 .home__nav-1SCNo a {
   color: #fff;
