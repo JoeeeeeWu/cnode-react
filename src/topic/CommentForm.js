@@ -28,8 +28,10 @@ class CommentForm extends Component {
             content
         }).then(function(){
             renderList(topicId)
+        }).catch(error=>{
+            alert('回复失败！')
         });
-        handleRelyClick();
+        if(handleRelyClick) handleRelyClick();
     }
 
     render() {

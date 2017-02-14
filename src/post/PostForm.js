@@ -3,6 +3,7 @@ import {hashHistory} from 'react-router';
 import PostFormStyle from './postForm.less';
 import axios from 'axios';
 const url='https://cnodejs.org/api/v1/';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class PostForm extends Component {
     constructor(props) {
@@ -43,17 +44,19 @@ class PostForm extends Component {
 
     render() {
         return (
-            <form onSubmit = {this.handleSubmit}>
-                <select name='tab' className={PostFormStyle.tab} ref={node=>{this.tab=node}}>
-                    <option value=''>请选择发表的话题类型</option>
-                    <option value ="share">分享</option>
-                    <option value ="ask">问答</option>
-                    <option value="job">招聘</option>
-                </select>
-                <textarea rows='1' className={PostFormStyle.title} placeholder='请输入话题标题，10字以上' ref={node=>{this.title=node}}></textarea>
-                <textarea rows='18' className={PostFormStyle.content} placeholder='请输入话题内容，支持markdown写法，30字以上' ref={node=>{this.content=node}}></textarea>
-                <button type='submit' className={PostFormStyle.submit}>点击发表</button>
-            </form>
+            <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                <form onSubmit = {this.handleSubmit} key='postForm'>
+                    <select name='tab' className={PostFormStyle.tab} ref={node=>{this.tab=node}}>
+                        <option value=''>请选择发表的话题类型</option>
+                        <option value ="share">分享</option>
+                        <option value ="ask">问答</option>
+                        <option value="job">招聘</option>
+                    </select>
+                    <textarea rows='1' className={PostFormStyle.title} placeholder='请输入话题标题，10字以上' ref={node=>{this.title=node}}></textarea>
+                    <textarea rows='12' className={PostFormStyle.content} placeholder='请输入话题内容，支持markdown写法，30字以上' ref={node=>{this.content=node}}></textarea>
+                    <button type='submit' className={PostFormStyle.submit}>点击发表</button>
+                </form>
+            </ReactCSSTransitionGroup>
         );
     }
 }

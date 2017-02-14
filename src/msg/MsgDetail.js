@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import MsgDetailStyle from './msgDetail.less';
 import * as actions from './msgActionCreator';
 import * as tools from '../common/tools';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class MsgDetail extends Component {
     constructor(props) {
@@ -57,16 +58,20 @@ class MsgDetail extends Component {
                     <li className={MsgDetailStyle[this.state.hasNotClass]} onClick={this.handleClickHasNot}>未读消息</li>
                     <li className={MsgDetailStyle[this.state.hasClass]} onClick={this.handleClickHas}>已读消息</li>
                 </ul>
-                {this.state.listData.map(function(item,index){
-                    const {type,author : {loginname},topic : {id,title},reply : {content,create_at}} = item;
-                    return (<li key={index} className={MsgDetailStyle.msgItem}>
-                                <Link to={`/topic/${id}`}>
-                                    <p>{loginname}在话题{title}中{type=='at' ? '@' : '回复'}了你</p>
-                                    <p className={MsgDetailStyle.time}>{tools.formatTime(create_at)}</p>
-                                </Link>
-                            </li>)
-                   
-                })}
+                <ul>
+                    <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={false}>
+                        {this.state.listData.map(function(item,index){
+                            const {type,author : {loginname},topic : {id,title},reply : {content,create_at}} = item;
+                            return (<li key={index} className={MsgDetailStyle.msgItem}>
+                                        <Link to={`/topic/${id}`}>
+                                            <p>{loginname}在话题{title}中{type=='at' ? '@' : '回复'}了你</p>
+                                            <p className={MsgDetailStyle.time}>{tools.formatTime(create_at)}</p>
+                                        </Link>
+                                    </li>)
+                        
+                        })}
+                    </ReactCSSTransitionGroup>
+                </ul>
             </div>
         );
     }

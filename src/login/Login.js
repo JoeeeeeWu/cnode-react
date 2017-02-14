@@ -4,6 +4,7 @@ import Header from '../common/Header';
 import loginStyle from './login.less';
 import {hashHistory} from 'react-router';
 import * as actions from '../common/commonActionCreator';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Login extends Component {
     constructor(props) {
@@ -30,10 +31,12 @@ class Login extends Component {
                 <div className={loginStyle.headerContainer}>
                     <Header title='登录' left={left} leftClick={onClick}/>
                 </div>
-                <form className={loginStyle.form} onSubmit={this.handleSubmit}>
-                    <input ref={node=>{this.input=node}} type='text' placeholder='请输入你的Access Token'/>
-                    <button type='submit'>登录</button>
-                </form>
+                <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                    <form className={loginStyle.form} onSubmit={this.handleSubmit}>
+                        <input ref={node=>{this.input=node}} type='text' placeholder='请输入你的Access Token'/>
+                        <button type='submit'>登录</button>
+                    </form>
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

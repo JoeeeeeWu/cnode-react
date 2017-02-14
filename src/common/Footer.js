@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import {IndexLink,Link} from 'react-router';
+import {connect} from 'react-redux';
 import footerStyle from './footer.less';
 
 class Footer extends Component {
     render() {
         const {index} = this.props;
+        const {extab} = this.props;
+        const link = extab ? `/?tab=${extab}` : '/';
+        console.log(link);
         var arr=[];
         arr[index] = 'active';
         return (
             <footer className={footerStyle.footer}>
                 <ul>
                     <li className={footerStyle[arr[0]]}>
-                        <IndexLink to='/'>
+                        <IndexLink to={link}>
                             <i className='iconfont icon-home'></i>
                             <span>首页</span>
                         </IndexLink>
@@ -40,4 +44,10 @@ class Footer extends Component {
     }
 }
 
-export default Footer;
+const mapStateToProps = (state) => {
+    return {
+        extab : state.homeState.extab
+    }
+}
+
+export default connect(mapStateToProps)(Footer);

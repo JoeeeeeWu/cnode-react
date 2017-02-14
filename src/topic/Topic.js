@@ -9,6 +9,7 @@ import LoginWarn from '../common/LoginWarn';
 import * as tools from '../common/tools';
 import GoTop from '../common/GoTop';
 import LodeMsg from '../common/LodeMsg';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import axios from 'axios';
 
@@ -63,37 +64,39 @@ class Topic extends Component {
                         {
                             this.state.show ? 
                             <LodeMsg msg={this.state.msg}/> : 
-                            <div className={topicStyle.topic}>
-                                <h3 className={topicStyle.title}>
-                                    <i className={`iconfont icon-${tab}`}></i>
-                                    {title}
-                                </h3>
-                                <div className={topicStyle.msg}>
-                                    <div className={topicStyle.pic}>
-                                        <Link to={`/user/${loginname}`}><img src={avatar_url} className={topicStyle.avatar}/></Link>
+                            <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                                <div className={topicStyle.topic} key="topic">
+                                    <h3 className={topicStyle.title}>
+                                        <i className={`iconfont icon-${tab}`}></i>
+                                        {title}
+                                    </h3>
+                                    <div className={topicStyle.msg}>
+                                        <div className={topicStyle.pic}>
+                                            <Link to={`/user/${loginname}`}><img src={avatar_url} className={topicStyle.avatar}/></Link>
+                                        </div>
+                                        <div className={topicStyle.msgDetail}>
+                                            <div>
+                                                <Link to={`/user/${loginname}`}><span>{loginname}</span></Link>
+                                                <span>发表于{tools.formatTime(create_at)}</span>
+                                            </div>
+                                            <div>
+                                                <span>阅读：{visit_count}</span>
+                                                <span>回复：{reply_count}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className={topicStyle.msgDetail}>
-                                        <div>
-                                            <Link to={`/cnode-react/user/${loginname}`}><span>{loginname}</span></Link>
-                                            <span>发表于{tools.formatTime(create_at)}</span>
-                                        </div>
-                                        <div>
-                                            <span>阅读：{visit_count}</span>
-                                            <span>回复：{reply_count}</span>
-                                        </div>
+                                    <div className={topicStyle.content} dangerouslySetInnerHTML={{__html: content}}/>
+                                    <h4 className={topicStyle.reliesNumber}>共{reply_count}条回复：</h4>
+                                    <CommentList replies={replies}/>
+                                    <div className={topicStyle.bottom}>
+                                        {
+                                            !accesstoken ? 
+                                            <LoginWarn/> :
+                                            <CommentForm/> 
+                                        }
                                     </div>
                                 </div>
-                                <div className={topicStyle.content} dangerouslySetInnerHTML={{__html: content}}/>
-                                <h4 className={topicStyle.reliesNumber}>共{reply_count}条回复：</h4>
-                                <CommentList replies={replies}/>
-                                <div className={topicStyle.bottom}>
-                                    {
-                                        !accesstoken ? 
-                                        <LoginWarn/> :
-                                        <CommentForm/> 
-                                    }
-                                </div>
-                            </div>
+                            </ReactCSSTransitionGroup>
                         }
                     </div>
                 <GoTop/>

@@ -66,7 +66,7 @@ class Comment extends Component {
                 <div className={commentStyle.msg}>
                     <Link to={`/user/${loginname}`}><img src={avatar_url} className={commentStyle.avatar}/></Link>
                     <div className={commentStyle.msgDetail}>
-                        <span><Link to={`/cnode-react/user/${loginname}`}>{loginname}</Link></span>
+                        <span><Link to={`/user/${loginname}`}>{loginname}</Link></span>
                         <span>回复于{tools.formatTime(create_at)}</span>
                     </div>
                 </div>

@@ -2,7 +2,7 @@ const initialState = {
     listData : [],
     exscrollTop : 0,
     extab : null,
-    expage : 1
+    expage : 0
 }
 
 const homeState = (state=initialState,action) => {

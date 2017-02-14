@@ -27,7 +27,7 @@ li{
 
 a{
     text-decoration: none;
-    color: #333;
+    color: #66B32F;
 }
 
 img{
@@ -45,7 +45,7 @@ pre{
     word-wrap: break-word;
 }
 
-.clearfix:after{
+:global(.clearfix:after){
     content:' ';
     height:0;
     display:block;
@@ -58,10 +58,99 @@ input,textarea{
     border: solid 1px #999;
     resize: none;
     box-sizing: border-box;
+    line-height: 0.25rem;
 }
 
 button{
     border-style: none;
-    background-color: #333;
-    color: #f7f7f7;
+    background-color: #66B32F;
+    color: #383b45;
 }
+
+:global(.fade-slide-enter){
+     opacity: 0;
+     transform: translateY(15px);
+}
+
+:global(.fade-slide-enter):global(.fade-slide-enter-active) {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 500ms ease-out,transform 500ms ease-out;
+}
+
+:global(.fade-slide-leave) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+:global(.fade-slide-leave):global(.fade-slide-leave-active) {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 500ms ease-out,transform 500ms ease-out;
+}
+
+:global(.fade-slide-appear) {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+:global(.fade-slide-appear):global(.fade-slide-appear-active) {
+    opacity: 1;
+    transition: opacity 500ms ease-out,transform 500ms ease-out;
+}
+
+
+:global(.down-enter){
+     transform: translateY(-5px);
+}
+
+:global(.down-enter):global(.down-enter-active) {
+    transform: translateY(0);
+    transition: transform 200ms ease-out;
+}
+
+:global(.down-leave) {
+    transform: translateY(0);
+}
+
+:global(.down-leave):global(.down-leave-active) {
+    transform: translateY(-5px);
+    transition: transform 200ms ease-out;
+}
+
+:global(.down-appear) {
+    transform: translateY(-5px);
+}
+
+:global(.down-appear):global(.down-appear-active) {
+    transform: translateY(0);
+    transition: transform 200ms ease-out;
+}
+
+:global(.fade-enter){
+     opacity: 0;
+}
+
+:global(.fade-enter):global(.fade-enter-active) {
+    opacity: 1;
+    transition: opacity 500ms ease-out;
+}
+
+:global(.fade-leave) {
+    opacity: 1;
+}
+
+:global(.fade-leave):global(.fade-leave-active) {
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+}
+
+:global(.fade-appear) {
+    opacity: 0;
+}
+
+:global(.fade-appear):global(.fade-appear-active) {
+    opacity: 1;
+    transition: opacity 500ms ease-out;
+}
+

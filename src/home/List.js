@@ -4,6 +4,8 @@ import Item from './Item';
 import * as actions from './homeActionCreator';
 import homeStyle from './home.less';
 import LodeMsg from '../common/LodeMsg';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {hashHistory} from 'react-router';
 
 import axios from 'axios';
 
@@ -14,7 +16,7 @@ class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tab : 'all',
+            tab : null,
             page: 1,
             msg: ':D'
         };
@@ -46,28 +48,27 @@ class List extends Component {
     }
 
     componentWillMount(){
+        console.log('componentWillMount');
         let {renderList,tab,extab,expage}=this.props;
-        if(!tab && !extab){
-            this.getTopicListData(renderList);
-        }else if(tab && !extab){
+        if(!extab){
             this.getTopicListData(renderList,tab);
             this.setState({
-                tab
+                tab : tab || 'all'
             })
-        }else if(!tab && extab){
+        }else{
             this.setState({
-                page : expage
-            })
-        }else if(tab && extab && tab === extab){
-            this.setState({
-                page : expage
+                page : expage,
+                tab : extab
             })
         }
+        console.log(tab);
     }
 
     componentWillReceiveProps(nextProps){
-        let {renderList,tab} = nextProps;
-        if(tab!=this.props.tab){
+        const {tab,renderList}=nextProps;
+        console.log(nextProps);
+        console.log('componentWillReceiveProps');
+        if(tab!==this.props.tab){
             renderList([]);
             document.body.scrollTop = 0;
             this.getTopicListData(renderList,tab);
@@ -84,14 +85,17 @@ class List extends Component {
         const scrollTop = document.body.scrollTop;
         const wholeHeight = document.body.scrollHeight;
         if(windowHeight + scrollTop >= wholeHeight){
-            this.getTopicListData(renderNextList,this.props.tab,this.state.page)
+            this.getTopicListData(renderNextList,this.state.tab,this.state.page)
         }
     }
 
     componentDidMount(){
-        const {exscrollTop} = this.props;
-        document.body.scrollTop = exscrollTop;
+        const {exscrollTop,extab,tab} = this.props;
+        console.log(this.props);
         window.addEventListener('scroll',this.scrollHandler);
+        if(extab) {
+            document.body.scrollTop = exscrollTop;
+        }
     }
 
     componentWillUnmount() {
@@ -109,9 +113,11 @@ class List extends Component {
         return (
             <div>
                 <ul className={homeStyle.topicsList} >
-                    {listData.map(function(data,index){
-                        return <Item data={data} key={index}/>
-                    })}
+                    <ReactCSSTransitionGroup transitionName="fade-slide" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                        {listData.map(function(data,index){
+                            return <Item data={data} key={index}/>
+                        })}
+                    </ReactCSSTransitionGroup>
                 </ul>
                 <LodeMsg msg={this.state.msg}/>
             </div>

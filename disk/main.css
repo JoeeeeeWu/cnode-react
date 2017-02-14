@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   color: #fff;
-  background-color: #333;
+  background-color: #383b45;
   text-align: center;
   font-size: 0.16rem;
 }
@@ -26,7 +26,10 @@
   font-size: 0.2rem;
 }
 .footer__active-1lGtS {
-  background-color: #636363;
+  background-color: #66B32F;
+}
+.footer__active-1lGtS a {
+  color: #383b45;
 }
 .home__nav-1SCNo {
   width: 100%;
@@ -37,13 +40,11 @@
   top: 0;
   left: 0;
   color: #fff;
-  background-color: #333;
+  background-color: #383b45;
   text-align: center;
 }
 .home__nav-1SCNo a {
   color: #fff;
-  padding: 0.03rem 0.08rem;
-  border-radius: 0.08rem;
 }
 .home__nav-1SCNo ul {
   display: flex;
@@ -57,12 +58,16 @@
 }
 .home__active-1R8Cx a {
   padding: 0.05rem 0.1rem;
-  background-color: #999;
-  border-radius: 0.1rem;
+  background-color: #66B32F;
+  color: #383b45;
+  border-radius: 0.05rem;
 }
 .item__item-2C9cr {
   padding: 0.1rem;
   border-bottom: solid 1px #ddd;
+}
+.item__item-2C9cr a {
+  color: #383b45;
 }
 .item__title-2NR3q {
   font-size: 0.16rem;
@@ -133,16 +138,22 @@
 .header__header-P1JXb {
   height: 0.4rem;
   line-height: 0.4rem;
-  background-color: #333;
+  background-color: #383b45;
   color: #fff;
   display: flex;
   text-align: center;
+}
+.header__header-P1JXb .iconfont {
+  color: #383b45;
 }
 .header__left-1LJ0R,
 .header__right-OV-TJ {
   width: 0.4rem;
   height: 0.4rem;
   flex: 0 0 auto;
+}
+.header__btnActive-1M7qR {
+  background-color: #66B32F;
 }
 .header__title-2UExb {
   flex: 1 1 auto;
@@ -278,9 +289,11 @@ form {
 }
 .msgDetail__menu-3i7yo li {
   flex: 1 1 auto;
+  color: #fff;
 }
 .msgDetail__menu-3i7yo li.msgDetail__active-3stlJ {
-  border-bottom: solid 2px #333;
+  background-color: #66B32F;
+  color: #383b45;
 }
 .msgDetail__msgItem-QA0SU {
   padding: 0.1rem;
@@ -308,9 +321,11 @@ form {
 }
 .userCommon__menu-3OqYG li {
   flex: 1 1 auto;
+  color: #fff;
 }
 .userCommon__menu-3OqYG li.userCommon__active-35i6q {
-  border-bottom: solid 2px #333;
+  background-color: #66B32F;
+  color: #383b45;
 }
 .userCommon__userMsg-2mIdD {
   background-color: #ddd;
@@ -339,6 +354,7 @@ form {
 }
 .userCommon__item-PEnId a {
   display: flex;
+  color: #383b45;
 }
 .userCommon__title-205Yv {
   flex: 1 1 auto;
@@ -829,7 +845,7 @@ li {
 }
 a {
   text-decoration: none;
-  color: #333;
+  color: #66B32F;
 }
 img {
   max-width: 100%;
@@ -844,7 +860,7 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-.common__clearfix-KzEIE:after {
+.clearfix:after {
   content: ' ';
   height: 0;
   display: block;
@@ -857,9 +873,78 @@ textarea {
   border: solid 1px #999;
   resize: none;
   box-sizing: border-box;
+  line-height: 0.25rem;
 }
 button {
   border-style: none;
-  background-color: #333;
-  color: #f7f7f7;
+  background-color: #66B32F;
+  color: #383b45;
+}
+.fade-slide-enter {
+  opacity: 0;
+  transform: translateY(15px);
+}
+.fade-slide-enter.fade-slide-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.fade-slide-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-slide-leave.fade-slide-leave-active {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.fade-slide-appear {
+  opacity: 0;
+  transform: translateY(15px);
+}
+.fade-slide-appear.fade-slide-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.down-enter {
+  transform: translateY(-5px);
+}
+.down-enter.down-enter-active {
+  transform: translateY(0);
+  transition: transform 200ms ease-out;
+}
+.down-leave {
+  transform: translateY(0);
+}
+.down-leave.down-leave-active {
+  transform: translateY(-5px);
+  transition: transform 200ms ease-out;
+}
+.down-appear {
+  transform: translateY(-5px);
+}
+.down-appear.down-appear-active {
+  transform: translateY(0);
+  transition: transform 200ms ease-out;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+}
+.fade-leave {
+  opacity: 1;
+}
+.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+.fade-appear {
+  opacity: 0;
+}
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
 }

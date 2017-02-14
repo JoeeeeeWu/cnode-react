@@ -5,6 +5,7 @@ import * as actions from '../my/myActionCreator';
 import userCommonStyle from './userCommon.less';
 import * as tools from '../common/tools';
 import LodeMsg from '../common/LodeMsg';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import axios from 'axios';
 
@@ -77,38 +78,42 @@ class UserCommon extends Component {
                 {
                     this.state.show ?
                     <LodeMsg/> : 
-                    <div>
-                        <div className={userCommonStyle.userMsg}>
-                            <img src={avatar_url} alt="avatar" className={userCommonStyle.avatar}/>
-                            <h2 className={userCommonStyle.loginname}>{loginname}</h2>
-                            <div className={userCommonStyle.userData}>
-                                <span className={userCommonStyle.score}>积分：{score}</span>
-                                <span>注册于{create_at ? create_at.slice(0,10) : null}</span>
+                    <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                        <div key='userCommon'>
+                            <div className={userCommonStyle.userMsg}>
+                                <img src={avatar_url} alt="avatar" className={userCommonStyle.avatar}/>
+                                <h2 className={userCommonStyle.loginname}>{loginname}</h2>
+                                <div className={userCommonStyle.userData}>
+                                    <span className={userCommonStyle.score}>积分：{score}</span>
+                                    <span>注册于{create_at ? create_at.slice(0,10) : null}</span>
+                                </div>
                             </div>
+                            <ul className={userCommonStyle.menu}>
+                                <li className={userCommonStyle[this.state.topicClass]} onClick={this.handleClickTopic}>主题</li>
+                                <li className={userCommonStyle[this.state.replayClass]} onClick={this.handleClickReplay}>回复</li>
+                            </ul>
+                            <ul className={userCommonStyle.list}>
+                                <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={300} transitionLeaveTimeout={300} transitionLeave={false}>
+                                    {this.state.listData ? 
+                                    this.state.listData.map(function(data,index){
+                                        const {title,last_reply_at,id} = data;
+                                        return (
+                                            <li key={index} className={userCommonStyle.item}>
+                                                <Link to={`/topic/${id}`}>
+                                                    <p className={userCommonStyle.title}>
+                                                        {title}
+                                                    </p>
+                                                    <p className={userCommonStyle.time}>{tools.formatTime(last_reply_at)}</p>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })
+                                    : null
+                                    }
+                                </ReactCSSTransitionGroup>
+                            </ul>
                         </div>
-                        <ul className={userCommonStyle.menu}>
-                            <li className={userCommonStyle[this.state.topicClass]} onClick={this.handleClickTopic}>主题</li>
-                            <li className={userCommonStyle[this.state.replayClass]} onClick={this.handleClickReplay}>回复</li>
-                        </ul>
-                        <ul className={userCommonStyle.list}>
-                            {this.state.listData ? 
-                            this.state.listData.map(function(data){
-                                const {title,last_reply_at,id} = data;
-                                return (
-                                    <li key={last_reply_at} className={userCommonStyle.item}>
-                                        <Link to={`/topic/${id}`}>
-                                            <p className={userCommonStyle.title}>
-                                                {title}
-                                            </p>
-                                            <p className={userCommonStyle.time}>{tools.formatTime(last_reply_at)}</p>
-                                        </Link>
-                                    </li>
-                                )
-                            })
-                            : null
-                            }
-                        </ul>
-                    </div>
+                    </ReactCSSTransitionGroup>
                 }
             </div>
         );
