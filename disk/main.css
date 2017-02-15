@@ -861,6 +861,26 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.icon-top {
+  background-color: #ea4335;
+  font-size: 0.2rem;
+}
+.icon-ask {
+  background-color: #6A5B92;
+  font-size: 0.2rem;
+}
+.icon-job {
+  background-color: #4185f4;
+  font-size: 0.2rem;
+}
+.icon-good {
+  background-color: #fbbc05;
+  font-size: 0.2rem;
+}
+.icon-share {
+  background-color: #34a853;
+  font-size: 0.2rem;
+}
 .clearfix:after {
   content: ' ';
   height: 0;

@@ -6,12 +6,20 @@ import * as tools from '../common/tools';
 class Item extends Component {
 
     render() {
-        let {id,title,reply_count,visit_count,last_reply_at,create_at,author,tab}=this.props.data;
+        var tag = null;
+        let {id,title,reply_count,visit_count,last_reply_at,create_at,author,tab,good,top}=this.props.data;
+        if(top){
+            tag = 'top';
+        }else if(good){
+            tag = 'good';
+        }else{
+            tag = tab;
+        }
         return (
             <li className={itemStyle.item}>
                 <Link to={`/topic/${id}`}>
                     <h3 className={itemStyle.title}> 
-                        <i className={`iconfont icon-${tab}`}></i> 
+                        <i className={`iconfont icon-${tag}`}></i> 
                         {title}
                     </h3>
                     <div className={itemStyle.msg}>

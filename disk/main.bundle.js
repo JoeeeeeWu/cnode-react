@@ -29885,6 +29885,7 @@ webpackJsonp([0,1],[
 	    _createClass(Item, [{
 	        key: 'render',
 	        value: function render() {
+	            var tag = null;
 	            var _props$data = this.props.data,
 	                id = _props$data.id,
 	                title = _props$data.title,
@@ -29893,8 +29894,17 @@ webpackJsonp([0,1],[
 	                last_reply_at = _props$data.last_reply_at,
 	                create_at = _props$data.create_at,
 	                author = _props$data.author,
-	                tab = _props$data.tab;
+	                tab = _props$data.tab,
+	                good = _props$data.good,
+	                top = _props$data.top;
 
+	            if (top) {
+	                tag = 'top';
+	            } else if (good) {
+	                tag = 'good';
+	            } else {
+	                tag = tab;
+	            }
 	            return _react2.default.createElement(
 	                'li',
 	                { className: _item2.default.item },
@@ -29904,7 +29914,7 @@ webpackJsonp([0,1],[
 	                    _react2.default.createElement(
 	                        'h3',
 	                        { className: _item2.default.title },
-	                        _react2.default.createElement('i', { className: 'iconfont icon-' + tab }),
+	                        _react2.default.createElement('i', { className: 'iconfont icon-' + tag }),
 	                        title
 	                    ),
 	                    _react2.default.createElement(
