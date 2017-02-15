@@ -31,12 +31,12 @@ class Login extends Component {
                 <div className={loginStyle.headerContainer}>
                     <Header title='登录' left={left} leftClick={onClick}/>
                 </div>
-                <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-                    <form className={loginStyle.form} onSubmit={this.handleSubmit}>
+                <form className={loginStyle.form} onSubmit={this.handleSubmit}>
+                    <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
                         <input ref={node=>{this.input=node}} type='text' placeholder='请输入你的Access Token'/>
                         <button type='submit'>登录</button>
-                    </form>
-                </ReactCSSTransitionGroup>
+                    </ReactCSSTransitionGroup>
+                </form>
             </div>
         );
     }

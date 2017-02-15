@@ -35690,11 +35690,11 @@ webpackJsonp([0,1],[
 	                    _react2.default.createElement(_Header2.default, { title: '\u767B\u5F55', left: left, leftClick: onClick })
 	                ),
 	                _react2.default.createElement(
-	                    _reactAddonsCssTransitionGroup2.default,
-	                    { transitionName: 'fade', transitionAppear: true, transitionAppearTimeout: 500, transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
+	                    'form',
+	                    { className: _login2.default.form, onSubmit: this.handleSubmit },
 	                    _react2.default.createElement(
-	                        'form',
-	                        { className: _login2.default.form, onSubmit: this.handleSubmit },
+	                        _reactAddonsCssTransitionGroup2.default,
+	                        { transitionName: 'fade', transitionAppear: true, transitionAppearTimeout: 500, transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
 	                        _react2.default.createElement('input', { ref: function ref(node) {
 	                                _this2.input = node;
 	                            }, type: 'text', placeholder: '\u8BF7\u8F93\u5165\u4F60\u7684Access Token' }),
