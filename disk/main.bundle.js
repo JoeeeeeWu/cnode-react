@@ -29626,9 +29626,9 @@ webpackJsonp([0,1],[
 
 	var _home2 = _interopRequireDefault(_home);
 
-	var _LodeMsg = __webpack_require__(293);
+	var _Tip = __webpack_require__(293);
 
-	var _LodeMsg2 = _interopRequireDefault(_LodeMsg);
+	var _Tip2 = _interopRequireDefault(_Tip);
 
 	var _reactAddonsCssTransitionGroup = __webpack_require__(296);
 
@@ -29793,7 +29793,7 @@ webpackJsonp([0,1],[
 	                        })
 	                    )
 	                ),
-	                _react2.default.createElement(_LodeMsg2.default, { msg: this.state.msg })
+	                _react2.default.createElement(_Tip2.default, { msg: this.state.msg })
 	            );
 	        }
 	    }]);
@@ -30061,9 +30061,9 @@ webpackJsonp([0,1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _lodeMsg = __webpack_require__(294);
+	var _tip = __webpack_require__(294);
 
-	var _lodeMsg2 = _interopRequireDefault(_lodeMsg);
+	var _tip2 = _interopRequireDefault(_tip);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30073,33 +30073,33 @@ webpackJsonp([0,1],[
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var LodeMsg = function (_Component) {
-	    _inherits(LodeMsg, _Component);
+	var Tip = function (_Component) {
+	    _inherits(Tip, _Component);
 
-	    function LodeMsg() {
-	        _classCallCheck(this, LodeMsg);
+	    function Tip() {
+	        _classCallCheck(this, Tip);
 
-	        return _possibleConstructorReturn(this, (LodeMsg.__proto__ || Object.getPrototypeOf(LodeMsg)).apply(this, arguments));
+	        return _possibleConstructorReturn(this, (Tip.__proto__ || Object.getPrototypeOf(Tip)).apply(this, arguments));
 	    }
 
-	    _createClass(LodeMsg, [{
+	    _createClass(Tip, [{
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'p',
-	                { className: _lodeMsg2.default.more },
+	                { className: _tip2.default.more },
 	                this.props.msg
 	            );
 	        }
 	    }]);
 
-	    return LodeMsg;
+	    return Tip;
 	}(_react.Component);
 
-	exports.default = LodeMsg;
+	exports.default = Tip;
 
 
-	LodeMsg.defaultProps = {
+	Tip.defaultProps = {
 	    msg: '正在加载中...'
 	};
 
@@ -30108,7 +30108,7 @@ webpackJsonp([0,1],[
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"more":"lodeMsg__more-1dUUh"};
+	module.exports = {"more":"tip__more-22gj9"};
 
 /***/ },
 /* 295 */,
@@ -33871,9 +33871,9 @@ webpackJsonp([0,1],[
 
 	var _GoTop2 = _interopRequireDefault(_GoTop);
 
-	var _LodeMsg = __webpack_require__(293);
+	var _Tip = __webpack_require__(293);
 
-	var _LodeMsg2 = _interopRequireDefault(_LodeMsg);
+	var _Tip2 = _interopRequireDefault(_Tip);
 
 	var _reactAddonsCssTransitionGroup = __webpack_require__(296);
 
@@ -33969,7 +33969,7 @@ webpackJsonp([0,1],[
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: _topic2.default.topicContainer },
-	                    this.state.show ? _react2.default.createElement(_LodeMsg2.default, { msg: this.state.msg }) : _react2.default.createElement(
+	                    this.state.show ? _react2.default.createElement(_Tip2.default, { msg: this.state.msg }) : _react2.default.createElement(
 	                        _reactAddonsCssTransitionGroup2.default,
 	                        { transitionName: 'fade', transitionAppear: true, transitionAppearTimeout: 500, transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
 	                        _react2.default.createElement(
@@ -35003,6 +35003,10 @@ webpackJsonp([0,1],[
 
 	var tools = _interopRequireWildcard(_tools);
 
+	var _Tip = __webpack_require__(293);
+
+	var _Tip2 = _interopRequireDefault(_Tip);
+
 	var _reactAddonsCssTransitionGroup = __webpack_require__(296);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
@@ -35070,7 +35074,6 @@ webpackJsonp([0,1],[
 	        value: function componentWillReceiveProps(nextProps) {
 	            var hasnot_read_messages = nextProps.msgData.hasnot_read_messages;
 
-	            console.log(hasnot_read_messages);
 	            this.setState({
 	                listData: hasnot_read_messages
 	            });
@@ -35078,7 +35081,6 @@ webpackJsonp([0,1],[
 	    }, {
 	        key: 'render',
 	        value: function render() {
-
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -35102,7 +35104,7 @@ webpackJsonp([0,1],[
 	                    _react2.default.createElement(
 	                        _reactAddonsCssTransitionGroup2.default,
 	                        { transitionName: 'fade-slide', transitionEnterTimeout: 300, transitionLeaveTimeout: 300 },
-	                        this.state.listData.map(function (item, index) {
+	                        this.state.listData.length === 0 ? _react2.default.createElement(_Tip2.default, { msg: '\u6682\u65E0\u6D88\u606F\uFF01' }) : this.state.listData.map(function (item, index) {
 	                            var type = item.type,
 	                                loginname = item.author.loginname,
 	                                _item$topic = item.topic,
@@ -35131,6 +35133,7 @@ webpackJsonp([0,1],[
 	                                    _react2.default.createElement(
 	                                        'p',
 	                                        { className: _msgDetail2.default.time },
+	                                        '\u2014\u2014',
 	                                        tools.formatTime(create_at)
 	                                    )
 	                                )
@@ -35348,9 +35351,9 @@ webpackJsonp([0,1],[
 
 	var tools = _interopRequireWildcard(_tools);
 
-	var _LodeMsg = __webpack_require__(293);
+	var _Tip = __webpack_require__(293);
 
-	var _LodeMsg2 = _interopRequireDefault(_LodeMsg);
+	var _Tip2 = _interopRequireDefault(_Tip);
 
 	var _reactAddonsCssTransitionGroup = __webpack_require__(296);
 
@@ -35462,7 +35465,7 @@ webpackJsonp([0,1],[
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                this.state.show ? _react2.default.createElement(_LodeMsg2.default, null) : _react2.default.createElement(
+	                this.state.show ? _react2.default.createElement(_Tip2.default, null) : _react2.default.createElement(
 	                    _reactAddonsCssTransitionGroup2.default,
 	                    { transitionName: 'fade', transitionAppear: true, transitionAppearTimeout: 500, transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
 	                    _react2.default.createElement(
@@ -35537,7 +35540,7 @@ webpackJsonp([0,1],[
 	                                            )
 	                                        )
 	                                    );
-	                                }) : null
+	                                }) : _react2.default.createElement(Msg, { msg: '\u6682\u65E0\u5185\u5BB9\uFF01' })
 	                            )
 	                        )
 	                    )

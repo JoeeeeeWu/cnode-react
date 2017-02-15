@@ -106,7 +106,7 @@
   flex: 0 0 auto;
   text-align: right;
 }
-.lodeMsg__more-1dUUh {
+.tip__more-22gj9 {
   text-align: center;
   line-height: 0.5rem;
 }
@@ -297,8 +297,15 @@ form {
   color: #383b45;
 }
 .msgDetail__msgItem-QA0SU {
-  padding: 0.1rem;
+  padding: 0.05rem 0.1rem;
   border-bottom: solid 1px #ddd;
+}
+.msgDetail__msgItem-QA0SU a {
+  color: #383b45;
+}
+.msgDetail__msgItem-QA0SU p {
+  margin-top: 0.05rem;
+  margin-bottom: 0.05rem;
 }
 .msgDetail__time-1kRMF {
   text-align: right;
