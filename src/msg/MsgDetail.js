@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import MsgDetailStyle from './msgDetail.less';
 import * as actions from './msgActionCreator';
 import * as tools from '../common/tools';
+import Tip from '../common/Tip';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class MsgDetail extends Component {
@@ -44,34 +45,38 @@ class MsgDetail extends Component {
 
     componentWillReceiveProps(nextProps) {
         const {hasnot_read_messages} = nextProps.msgData;
-        console.log(hasnot_read_messages);
         this.setState({
             listData : hasnot_read_messages
         });
     }
     
     render() {
-
         return (
             <div>
                 <ul className={MsgDetailStyle.menu}>
                     <li className={MsgDetailStyle[this.state.hasNotClass]} onClick={this.handleClickHasNot}>未读消息</li>
                     <li className={MsgDetailStyle[this.state.hasClass]} onClick={this.handleClickHas}>已读消息</li>
                 </ul>
+               
                 <ul>
                     <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-                        {this.state.listData.map(function(item,index){
-                            const {type,author : {loginname},topic : {id,title},reply : {content,create_at}} = item;
-                            return (<li key={index} className={MsgDetailStyle.msgItem}>
-                                        <Link to={`/topic/${id}`}>
-                                            <p>{loginname}在话题{title}中{type=='at' ? '@' : '回复'}了你</p>
-                                            <p className={MsgDetailStyle.time}>{tools.formatTime(create_at)}</p>
-                                        </Link>
-                                    </li>)
-                        
-                        })}
+                        {
+                            this.state.listData.length === 0 ? 
+                            <Tip msg='暂无消息！'/> :
+                            this.state.listData.map(function(item,index){
+                                const {type,author : {loginname},topic : {id,title},reply : {content,create_at}} = item;
+                                return (<li key={index} className={MsgDetailStyle.msgItem}>
+                                            <Link to={`/topic/${id}`}>
+                                                <p>{loginname}在话题{title}中{type=='at' ? '@' : '回复'}了你</p>
+                                                <p className={MsgDetailStyle.time}>——{tools.formatTime(create_at)}</p>
+                                            </Link>
+                                        </li>)
+                            
+                            })
+                        }
                     </ReactCSSTransitionGroup>
                 </ul>
+                 
             </div>
         );
     }

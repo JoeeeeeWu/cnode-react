@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import lodeMsgStyle from './lodeMsg.less';
+import tipStyle from './tip.less';
 
-class LodeMsg extends Component {
+class Tip extends Component {
     render() {
         return (
-            <p className={lodeMsgStyle.more}>
+            <p className={tipStyle.more}>
                 {this.props.msg}
             </p>
         );
     }
 }
 
-export default LodeMsg;
+export default Tip;
 
-LodeMsg.defaultProps = {
+Tip.defaultProps = {
   msg: '正在加载中...'
 }

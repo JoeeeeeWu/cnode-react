@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Item from './Item';
 import * as actions from './homeActionCreator';
 import homeStyle from './home.less';
-import LodeMsg from '../common/LodeMsg';
+import Tip from '../common/Tip';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {hashHistory} from 'react-router';
 
@@ -114,7 +114,7 @@ class List extends Component {
                         })}
                     </ReactCSSTransitionGroup>
                 </ul>
-                <LodeMsg msg={this.state.msg}/>
+                <Tip msg={this.state.msg}/>
             </div>
         );
     }

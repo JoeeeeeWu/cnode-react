@@ -8,7 +8,7 @@ import CommentForm from './CommentForm';
 import LoginWarn from '../common/LoginWarn';
 import * as tools from '../common/tools';
 import GoTop from '../common/GoTop';
-import LodeMsg from '../common/LodeMsg';
+import Tip from '../common/Tip';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import axios from 'axios';
@@ -63,7 +63,7 @@ class Topic extends Component {
                     <div className={topicStyle.topicContainer}>
                         {
                             this.state.show ? 
-                            <LodeMsg msg={this.state.msg}/> : 
+                            <Tip msg={this.state.msg}/> : 
                             <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
                                 <div className={topicStyle.topic} key="topic">
                                     <h3 className={topicStyle.title}>

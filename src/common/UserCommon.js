@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 import * as actions from '../my/myActionCreator';
 import userCommonStyle from './userCommon.less';
 import * as tools from '../common/tools';
-import LodeMsg from '../common/LodeMsg';
+import Tip from '../common/Tip';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import axios from 'axios';
@@ -77,7 +77,7 @@ class UserCommon extends Component {
             <div>
                 {
                     this.state.show ?
-                    <LodeMsg/> : 
+                    <Tip/> : 
                     <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
                         <div key='userCommon'>
                             <div className={userCommonStyle.userMsg}>
@@ -94,21 +94,22 @@ class UserCommon extends Component {
                             </ul>
                             <ul className={userCommonStyle.list}>
                                 <ReactCSSTransitionGroup transitionName="fade-slide" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-                                    {this.state.listData ? 
-                                    this.state.listData.map(function(data,index){
-                                        const {title,last_reply_at,id} = data;
-                                        return (
-                                            <li key={index} className={userCommonStyle.item}>
-                                                <Link to={`/topic/${id}`}>
-                                                    <p className={userCommonStyle.title}>
-                                                        {title}
-                                                    </p>
-                                                    <p className={userCommonStyle.time}>{tools.formatTime(last_reply_at)}</p>
-                                                </Link>
-                                            </li>
-                                        )
-                                    })
-                                    : null
+                                    {
+                                        this.state.listData ? 
+                                        this.state.listData.map(function(data,index){
+                                            const {title,last_reply_at,id} = data;
+                                            return (
+                                                <li key={index} className={userCommonStyle.item}>
+                                                    <Link to={`/topic/${id}`}>
+                                                        <p className={userCommonStyle.title}>
+                                                            {title}
+                                                        </p>
+                                                        <p className={userCommonStyle.time}>{tools.formatTime(last_reply_at)}</p>
+                                                    </Link>
+                                                </li>
+                                            )
+                                        }) :
+                                        <Msg msg='暂无内容！'/>
                                     }
                                 </ReactCSSTransitionGroup>
                             </ul>
