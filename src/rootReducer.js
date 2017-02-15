@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
-import commonState from './common/commonReducer';
+import loginState from './login/loginReducer';
 import homeState from './home/homeReducer';
 import topicState from './topic/topicReducer';
 import myState from './my/myReducer';
 import msgState from './msg/msgReducer';
 
 const rootReducer = combineReducers({
-    commonState,
+    loginState,
     homeState,
     topicState,
     myState,

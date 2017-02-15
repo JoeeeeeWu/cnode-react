@@ -23766,9 +23766,9 @@ webpackJsonp([0,1],[
 
 	var _redux = __webpack_require__(189);
 
-	var _commonReducer = __webpack_require__(219);
+	var _loginReducer = __webpack_require__(219);
 
-	var _commonReducer2 = _interopRequireDefault(_commonReducer);
+	var _loginReducer2 = _interopRequireDefault(_loginReducer);
 
 	var _homeReducer = __webpack_require__(220);
 
@@ -23789,7 +23789,7 @@ webpackJsonp([0,1],[
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootReducer = (0, _redux.combineReducers)({
-	    commonState: _commonReducer2.default,
+	    loginState: _loginReducer2.default,
 	    homeState: _homeReducer2.default,
 	    topicState: _topicReducer2.default,
 	    myState: _myReducer2.default,
@@ -23808,19 +23808,14 @@ webpackJsonp([0,1],[
 	    value: true
 	});
 	var initialState = {
-	    accesstoken: localStorage.getItem("accesstoken"),
 	    loginData: {}
 	};
 
-	var appState = function appState() {
+	var loginState = function loginState() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
 	    var action = arguments[1];
 
 	    switch (action.type) {
-	        case 'IS_LOGIN':
-	            return Object.assign({}, state, {
-	                accesstoken: action.accesstoken
-	            });
 	        case 'GET_LOGINDATA':
 	            return Object.assign({}, state, {
 	                loginData: action.loginData
@@ -23830,7 +23825,7 @@ webpackJsonp([0,1],[
 	    }
 	};
 
-	exports.default = appState;
+	exports.default = loginState;
 
 /***/ },
 /* 220 */
@@ -35631,9 +35626,13 @@ webpackJsonp([0,1],[
 
 	var _reactRouter = __webpack_require__(225);
 
-	var _commonActionCreator = __webpack_require__(377);
+	var _axios = __webpack_require__(309);
 
-	var actions = _interopRequireWildcard(_commonActionCreator);
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _loginActionCreator = __webpack_require__(377);
+
+	var actions = _interopRequireWildcard(_loginActionCreator);
 
 	var _reactAddonsCssTransitionGroup = __webpack_require__(296);
 
@@ -35648,6 +35647,8 @@ webpackJsonp([0,1],[
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var url = 'https://cnodejs.org/api/v1/';
 
 	var Login = function (_Component) {
 	    _inherits(Login, _Component);
@@ -35664,15 +35665,30 @@ webpackJsonp([0,1],[
 	    _createClass(Login, [{
 	        key: 'handleSubmit',
 	        value: function handleSubmit(e) {
-	            var login = this.props.login;
+	            var getLogin = this.props.getLogin;
 
 	            var input = this.input.value.trim();
 	            e.preventDefault();
 	            if (!input) {
 	                alert('请输入您的Access Token!');
-	                return;
+	            } else {
+	                this.getLoginData(getLogin, input);
 	            }
-	            login(input);
+	        }
+	    }, {
+	        key: 'getLoginData',
+	        value: function getLoginData(cb, accesstoken) {
+	            _axios2.default.post(url + 'accesstoken', {
+	                accesstoken: accesstoken
+	            }).then(function (res) {
+	                cb(res.data);
+	                localStorage.setItem('accesstoken', accesstoken);
+	                localStorage.setItem('loginname', res.data.loginname);
+	                _reactRouter.hashHistory.push('/my');
+	            }).catch(function (error) {
+	                console.log(error);
+	                alert('可能您的Access Token有误！');
+	            });
 	        }
 	    }, {
 	        key: 'render',
@@ -35714,8 +35730,8 @@ webpackJsonp([0,1],[
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	    return {
-	        login: function login(accesstoken) {
-	            dispatch(actions.fetchLogin(accesstoken));
+	        getLogin: function getLogin(loginData) {
+	            dispatch(actions.getLogin(loginData));
 	        }
 	    };
 	};
@@ -35732,61 +35748,18 @@ webpackJsonp([0,1],[
 /***/ },
 /* 376 */,
 /* 377 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.fetchLogin = fetchLogin;
-
-	var _axios = __webpack_require__(309);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	var _reactRouter = __webpack_require__(225);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var url = 'https://cnodejs.org/api/v1/';
-
-	function isLogin(accesstoken) {
-	    return {
-	        type: 'IS_LOGIN',
-	        accesstoken: accesstoken
-	    };
-	}
-
+	exports.getLogin = getLogin;
 	function getLogin(loginData) {
 	    return {
 	        type: 'GET_LOGINDATA',
 	        loginData: loginData
-	    };
-	}
-
-	function getLoginData(cb, accesstoken) {
-	    _axios2.default.post(url + 'accesstoken', {
-	        accesstoken: accesstoken
-	    }).then(function (res) {
-	        cb(res.data);
-	    }).catch(function (error) {
-	        console.log(error);
-	        alert('您的Access Token有误！');
-	    });
-	}
-
-	function fetchLogin(accesstoken) {
-	    return function (dispatch) {
-	        getLoginData(function (loginData) {
-	            dispatch(getLogin(loginData));
-	            console.log(loginData);
-	            localStorage.setItem("accesstoken", accesstoken);
-	            localStorage.setItem("loginname", loginData.loginname);
-	            dispatch(isLogin(accesstoken));
-	            alert('登录成功！');
-	            _reactRouter.browserHistory.push('/cnode-react//my');
-	        }, accesstoken);
 	    };
 	}
 

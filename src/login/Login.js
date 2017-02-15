@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import Header from '../common/Header';
 import loginStyle from './login.less';
 import {hashHistory} from 'react-router';
-import * as actions from '../common/commonActionCreator';
+import axios from 'axios';
+const url='https://cnodejs.org/api/v1/';
+import * as actions from './loginActionCreator';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Login extends Component {
@@ -13,14 +15,28 @@ class Login extends Component {
   }
 
     handleSubmit(e){
-        const {login} = this.props;
+        const {getLogin} = this.props;
         const input = this.input.value.trim();
         e.preventDefault();
         if(!input) {
             alert('请输入您的Access Token!');
-            return;
+        }else{
+            this.getLoginData (getLogin,input);
         }
-        login(input)
+    }
+
+    getLoginData (cb,accesstoken) {
+        axios.post(url + 'accesstoken' ,{
+            accesstoken
+        }).then(res => {
+            cb(res.data);
+            localStorage.setItem('accesstoken',accesstoken)
+            localStorage.setItem('loginname',res.data.loginname);
+            hashHistory.push('/my');
+        }).catch(error => {
+            console.log(error);
+            alert('可能您的Access Token有误！')
+        })
     }
 
     render() {
@@ -44,8 +60,8 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login : (accesstoken) => {
-            dispatch(actions.fetchLogin(accesstoken))
+        getLogin : (loginData) => {
+            dispatch(actions.getLogin(loginData));
         }
     }
 }
