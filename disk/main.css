@@ -218,6 +218,11 @@
   top: 0;
   left: 0;
 }
+.topic__topic-IUSGc {
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 .topic__title-d9lRP {
   line-height: 0.3rem;
 }

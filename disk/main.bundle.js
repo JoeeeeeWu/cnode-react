@@ -34575,7 +34575,7 @@ webpackJsonp([0,1],[
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"topicContainer":"topic__topicContainer-3dImr","headerContainer":"topic__headerContainer-QKGjE","title":"topic__title-d9lRP","msg":"topic__msg-1-QRP","pic":"topic__pic-2ur9B","avatar":"topic__avatar-16rgP","msgDetail":"topic__msgDetail-Kuyr-","reliesNumber":"topic__reliesNumber-1J2Q7","bottom":"topic__bottom-1IIZ5"};
+	module.exports = {"topicContainer":"topic__topicContainer-3dImr","headerContainer":"topic__headerContainer-QKGjE","topic":"topic__topic-IUSGc","title":"topic__title-d9lRP","msg":"topic__msg-1-QRP","pic":"topic__pic-2ur9B","avatar":"topic__avatar-16rgP","msgDetail":"topic__msgDetail-Kuyr-","reliesNumber":"topic__reliesNumber-1J2Q7","bottom":"topic__bottom-1IIZ5"};
 
 /***/ },
 /* 350 */,
