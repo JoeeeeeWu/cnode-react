@@ -4,6 +4,8 @@ import {Provider} from 'react-redux';
 import store from './store';
 import router from './router';
 
+import 'babel-polyfill';
+
 import 'normalize.css/normalize.less';
 import './common/common.less';
 import './common/Iconfont/iconfont.css';
