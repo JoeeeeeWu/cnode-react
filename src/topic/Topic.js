@@ -25,6 +25,7 @@ class Topic extends Component {
             show : true,
             msg : '正在加载中！'
         };
+        this.getTopicData = this.getTopicData.bind(this);
     }
     
     componentWillMount() {
@@ -35,7 +36,11 @@ class Topic extends Component {
     }
     
     getTopicData (cb,id) {
-        axios.get(url+'topic/'+id).then(res => {
+        axios.get(url+'topic/'+id,{
+            params : {
+                data : new Date().getTime()
+            }
+        }).then(res => {
             cb(res.data.data);
             this.setState({
                 show : false
@@ -87,12 +92,12 @@ class Topic extends Component {
                                     </div>
                                     <div className={topicStyle.content} dangerouslySetInnerHTML={{__html: content}}/>
                                     <h4 className={topicStyle.reliesNumber}>共{reply_count}条回复：</h4>
-                                    <CommentList replies={replies}/>
+                                    <CommentList replies={replies} getTopicData={this.getTopicData}/>
                                     <div className={topicStyle.bottom}>
                                         {
                                             !accesstoken ? 
                                             <LoginWarn/> :
-                                            <CommentForm/> 
+                                            <CommentForm getTopicData = {this.getTopicData}/> 
                                         }
                                     </div>
                                 </div>

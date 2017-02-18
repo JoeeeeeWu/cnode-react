@@ -14,7 +14,7 @@ class CommentForm extends Component {
 
     handleSubmit(e){
         e.preventDefault();
-        const {relyId,topicId,renderList,loginname,handleRelyClick} = this.props;
+        const {relyId,topicId,loginname,handleRelyClick,getTopicData,renderTopic} = this.props;
         if(!this.text.value.trim()){
             alert('回复的内容不能为空！');
             return
@@ -27,9 +27,13 @@ class CommentForm extends Component {
             reply_id : relyId,
             content
         }).then(function(){
-            renderList(topicId)
+            alert('回复成功！');
+            getTopicData(renderTopic,topicId);
+            this.text.value = null;
         }).catch(error=>{
-            alert('回复失败！')
+            alert('回复失败！！！');
+            console.log(error);
+            alert(error);
         });
         if(handleRelyClick) handleRelyClick();
     }
@@ -52,8 +56,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        renderList : (topicId) => {
-            dispatch(actions.fetchTopic(topicId))
+        renderTopic : (topicData)=>{
+            dispatch(actions.getTopic(topicData))//dispatch的是actionCreator的执行结果
         }
     }
 }

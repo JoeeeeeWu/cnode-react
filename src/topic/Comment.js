@@ -59,7 +59,7 @@ class Comment extends Component {
     
 
     render() {
-        const {data,topicId} = this.props;
+        const {data,getTopicData} = this.props;
         const {content,author:{loginname,avatar_url},create_at,id} = data;
         return (
             <li className={commentStyle.comment}>
@@ -76,7 +76,7 @@ class Comment extends Component {
                     <i className={`iconfont icon-reply ${commentStyle.reply}`} onClick = {this.handleRelyClick}></i>
                 </div>
                 <div className={commentStyle.relyFormContainer}>
-                    {this.state.showRelyForm ? <CommentForm relyId={id} loginname={loginname} handleRelyClick={this.handleRelyClick}/> : null}
+                    {this.state.showRelyForm ? <CommentForm relyId={id} loginname={loginname} handleRelyClick={this.handleRelyClick} getTopicData={getTopicData}/> : null}
                 </div>
             </li>
         );
