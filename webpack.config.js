@@ -9,7 +9,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname,'disk'),
-		filename: '[name].bundle.js',
+		filename: '[name].[hash:5].bundle.js',
 		// publicPath: '/disk/',
 		publicPath: 'https://wuxiaozhou.coding.me/cnode-react/disk/',
 		chunkFilename: '[name].[chunkhash:5].chunk.js'//利用hash做浏览器缓存
@@ -44,7 +44,7 @@ module.exports = {
     },
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin('common.js'),//智能提取公共部分，以提供我们浏览器的缓存复用，我们需要手动在html上去加载common.js，并且是必须要最先加载。CommonsChunkPlugin是在有多个entry时使用的，即在有多个入口文件时，这些入口文件可能会有一些共同的代码，我们便可以将这些共同的代码抽取出来成独立的文件。
-		new ExtractTextPlugin("[name].css"),
+		new ExtractTextPlugin("[name].[hash:5].bundle.css"),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false
