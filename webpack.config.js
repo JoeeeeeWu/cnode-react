@@ -10,7 +10,8 @@ module.exports = {
 	output: {
 		path: path.join(__dirname,'disk'),
 		filename: '[name].bundle.js',
-		publicPath: '/disk/',
+		// publicPath: '/disk/',
+		publicPath: 'https://wuxiaozhou.coding.me/cnode-react/disk/',
 		chunkFilename: '[name].[chunkhash:5].chunk.js'//利用hash做浏览器缓存
 	},
 	module: {
@@ -49,6 +50,11 @@ module.exports = {
 				warnings: false
 			}
 		}),//代码压缩，只在生产环境使用
+		new webpack.DefinePlugin({
+			"process.env": { 
+				NODE_ENV: JSON.stringify("production") 
+			}
+		})
 		// new HtmlWebpackPlugin({
 		// 	title: 'CNode:Node.js专业中文社区',
 		// 	filename: 'haha.html'
