@@ -22,6 +22,7 @@ class CommentForm extends Component {
         const foot = '[——来自吴小粥的cnode-react手机版](https://wuxiaozhou.coding.me/cnode-react/)';
         const content = relyId ? `[@${loginname}](/user/${loginname}) ${this.text.value} ${foot}` : `${this.text.value} ${foot}`;
         const accesstoken = localStorage.getItem('accesstoken');
+        var text = this.text;
         axios.post(url + 'topic/' + topicId + '/replies',{
             accesstoken,
             reply_id : relyId,
@@ -29,11 +30,11 @@ class CommentForm extends Component {
         }).then(function(){
             alert('回复成功！');
             getTopicData(renderTopic,topicId);
-            this.text.value = null;
+            console.log(this);
+            text.value = null;
         }).catch(error=>{
             alert('回复失败！！！');
             console.log(error);
-            alert(error);
         });
         if(handleRelyClick) handleRelyClick();
     }
